@@ -1,0 +1,47 @@
+#!/bin/sh
+
+kernVer=$(uname -m)
+hostname=$(hostname)
+kernelRelease=$(uname -r)
+tempUptime=$(uptime | cut -d" " -f2)
+contPacotes=$(pacman -Qq | wc -l)
+memTotal=$(( $(cat /proc/meminfo | grep MemTotal: | tr -s " " | cut -d " " -f2) / 1024 ))
+memUsed=$(( $(cat /proc/meminfo | grep Active: | tr -s " " | cut -d " " -f2) / 1024 ))
+procName=$(cat /proc/cpuinfo | grep "model name" | head -n1 | cut -d" " -f3,4,5,6)
+procSpeed=$(cat /proc/cpuinfo | grep "model name" | head -n1 | cut -d" " -f7,8)
+usadoHd=$(df -h | grep rootfs | tr -s " " | cut -d " " -f3)
+totalHd=$(df -h | grep rootfs | tr -s " " | cut -d " " -f2)
+totalUsado=$(df -h | grep rootfs | tr -s " " | cut -d " " -f5)
+editor=$EDITOR
+
+dataAtual=$(date +%d/%m/%Y)
+
+cvm='\033[01;31m'
+cvr='\033[01;32m'
+c1='\033[01;36m'
+c2='\033[01;34m'
+c0='\033[00m'
+
+
+echo -e ""
+echo -e "$c1               +                $c2 OS: $c0 Arch Linux $kernVer"
+echo -e "$c1               #                $c2 Hostname: $c0 $hostname"
+echo -e "$c1              ###               $c2 Kernel Release: $c0 $kernelRelease"
+echo -e "$c1             #####              $c2 Uptime: $c0 $tempUptime"
+echo -e "$c1             ######             $c2 Packages: $c0 $contPacotes"
+echo -e "$c1            ; #####;            $c2 RAM: $cvr $memUsed MB $c0 / $memTotal MB"
+echo -e "$c1           +##.#####            $c2 Processor Type: $c0 $procName"
+echo -e "$c1          +##########           $c2 Processor Speed: $c0 $procSpeed"
+echo -e "$c1         ######$c2#####$c1##;         $c2 \$EDITOR: $c0 $editor"
+echo -e "$c1        ####$c2##########$c1#+        $c2 Root: $cvm $usadoHd $c0/ $totalHd ($totalUsado)"
+echo -e "$c1       ###$c2####   #######    "
+echo -e "$c1     .##$c2####;     ;####;\". "
+echo -e "$c1    .#$c2######;     ;#####.   "
+echo -e "$c2    #########.   .########'    "
+echo -e "$c2   ######'           '######   "
+echo -e "$c2  ;####                 ####;  "
+echo -e "$c2  ##'                     '##  "
+echo -e "$c2 #'                         '# "
+echo -e "$c0"
+
+
