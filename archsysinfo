@@ -33,6 +33,8 @@ dataAtual=$(date +%d/%m/%Y)
 infoHd=$(df -h | grep rootfs | awk '{ print $3 " / " $2 " ("$5") " }')
 #------------------
 #
+# $cvm $usadoHd $c0/ $totalHd ($totalUsado)"
+#
 cvm='\033[01;31m'
 cvr='\033[01;32m'
 c1='\033[01;36m'
@@ -50,7 +52,7 @@ echo -e "$c1            ; #####;            $c2 RAM: $cvr $memUsed MB $c0 / $mem
 echo -e "$c1           +##.#####            $c2 Processor Type: $c0 $procName"
 echo -e "$c1          +##########           $c2 Processor Speed: $c0 $procSpeed"
 echo -e "$c1         ######$c2#####$c1##;         $c2 \$EDITOR: $c0 $editor"
-echo -e "$c1        ####$c2##########$c1#+        $infoHd  ## $c2 Root: $cvm $usadoHd $c0/ $totalHd ($totalUsado)"
+echo -e "$c1        ####$c2##########$c1#+         $c2 Root: ${cvm}$infoHd ${c0}
 echo -e "$c1       ###$c2####   #######    "
 echo -e "$c1     .##$c2####;     ;####;\". "
 echo -e "$c1    .#$c2######;     ;#####.   "
