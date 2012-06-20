@@ -16,7 +16,7 @@
 kernVer=$(uname -m)
 hostname=$(hostname)
 kernelRelease=$(uname -r)
-tempUptime=$(uptime | awk '{print $1,$3,$4}')
+tempUptime=$(uptime | tr -s "," " " | awk '{print $1 " ("$3") " }')
 contPacotes=$(pacman -Qq | wc -l)
 memTotal=$(( $(cat /proc/meminfo | grep MemTotal: | cut -d: -f2 | awk '{print $1}') / 1024 ))
 memUsed=$(( $(cat /proc/meminfo | grep Active: | cut -d: -f2 | awk '{print $1}') / 1024 ))
