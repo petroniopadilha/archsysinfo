@@ -52,7 +52,7 @@ echo -e "$c1            ; #####;            $c2 RAM: $cvr $memUsed MB $c0 / $mem
 echo -e "$c1           +##.#####            $c2 Processor Type: $c0 $procName"
 echo -e "$c1          +##########           $c2 Processor Speed: $c0 $procSpeed"
 echo -e "$c1         ######$c2#####$c1##;         $c2 \$EDITOR: $c0 $editor"
-echo -e "$c1        ####$c2##########$c1#+         $c2 Root: ${cvm}$infoHd ${c0}
+echo -e "$c1        ####$c2##########$c1#+        $c2 Root: ${cvm}$infoHd ${c0}"
 echo -e "$c1       ###$c2####   #######    "
 echo -e "$c1     .##$c2####;     ;####;\". "
 echo -e "$c1    .#$c2######;     ;#####.   "
