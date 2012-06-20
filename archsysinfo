@@ -22,25 +22,18 @@ memTotal=$(( $(cat /proc/meminfo | grep MemTotal: | cut -d: -f2 | awk '{print $1
 memUsed=$(( $(cat /proc/meminfo | grep Active: | cut -d: -f2 | awk '{print $1}') / 1024 ))
 procName=$(cat /proc/cpuinfo | grep "model name" | head -n1 | cut -d: -f2 | awk '{print $1,$2,$3}')
 procSpeed=$(cat /proc/cpuinfo | grep "model name" | head -n1 | cut -d: -f2 | awk '{print $4,$5,$6}')
+totalHd=$(df -h | grep rootfs | awk '{print $2}')
+usadoHd=$(df -h | grep rootfs | awk '{print $3}')
+totalUsado=$(df -h | grep rootfs | awk '{print $5}')
+##$(df -h | grep rootfs | awk '{ print $3 " / " $2 " ("$5") " }')
 editor=$EDITOR
 dataAtual=$(date +%d/%m/%Y)
-#
-#---DEPRECATED-----
-#usadoHd=$(df -h | grep rootfs | awk '{print $3}')
-#totalHd=$(df -h | grep rootfs | awk '{print $2}')
-#totalUsado=$(df -h | grep rootfs | awk '{print $5}')
-#---NEW-HD-INFO----
-infoHd=$(df -h | grep rootfs | awk '{ print $3 " / " $2 " ("$5") " }')
-#------------------
-#
-# $cvm $usadoHd $c0/ $totalHd ($totalUsado)"
 #
 cvm='\033[01;31m'
 cvr='\033[01;32m'
 c1='\033[01;36m'
 c2='\033[01;34m'
 c0='\033[00m'
-#
 #
 echo -e ""
 echo -e "$c1               +                $c2 OS: $c0 Arch Linux $kernVer"
@@ -52,7 +45,7 @@ echo -e "$c1            ; #####;            $c2 RAM: $cvr $memUsed MB $c0 / $mem
 echo -e "$c1           +##.#####            $c2 Processor Type: $c0 $procName"
 echo -e "$c1          +##########           $c2 Processor Speed: $c0 $procSpeed"
 echo -e "$c1         ######$c2#####$c1##;         $c2 \$EDITOR: $c0 $editor"
-echo -e "$c1        ####$c2##########$c1#+        $c2 Root: ${cvm}$infoHd ${c0}"
+echo -e "$c1        ####$c2##########$c1#+        $cvm $usadoHd $c0/ $totalHd ($totalUsado)"
 echo -e "$c1       ###$c2####   #######    "
 echo -e "$c1     .##$c2####;     ;####;\". "
 echo -e "$c1    .#$c2######;     ;#####.   "
