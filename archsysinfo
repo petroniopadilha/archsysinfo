@@ -14,7 +14,7 @@
 #
 #
 kernVer=$(uname -m)
-hostname=$(hostname)
+hostname=$(cat /etc/rc.conf | grep HOSTNAME |cut -d'=' -f2)
 kernelRelease=$(uname -r)
 tempUptime=$(uptime | tr -s "," " " | awk '{print $1 " ("$3") " }')
 contPacotes=$(pacman -Qq | wc -l)
